@@ -1,0 +1,55 @@
+{
+  "cookies": [
+    {
+      "name": "_interaction",
+      "value": "Uzd8Q-jgIqpJPeqMUKg0_v1lnvULP7R7U1KOv5a4b16",
+      "domain": "qaenv.auth.dev.sodiumlearn.com",
+      "path": "/sso/interaction/Uzd8Q-jgIqpJPeqMUKg0_v1lnvULP7R7U1KOv5a4b16",
+      "expires": 1789405463.506312,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_interaction.sig",
+      "value": "r51HsxTub1nq9iJISPf9saYljBQ",
+      "domain": "qaenv.auth.dev.sodiumlearn.com",
+      "path": "/sso/interaction/Uzd8Q-jgIqpJPeqMUKg0_v1lnvULP7R7U1KOv5a4b16",
+      "expires": 1789405463.506833,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_session",
+      "value": "Zu3v0bpFsHmJf2uAIBDtldyC1jPztfErIsU-zmGSmy9",
+      "domain": "qaenv.auth.dev.sodiumlearn.com",
+      "path": "/",
+      "expires": 1790611470.401445,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_session.sig",
+      "value": "iXNbwJ2zGWVxcQiAONNOJOtcQUc",
+      "domain": "qaenv.auth.dev.sodiumlearn.com",
+      "path": "/",
+      "expires": 1790611470.401486,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    }
+  ],
+  "origins": [
+    {
+      "origin": "https://qaenv.dev-fe.sodiumlearn.com",
+      "localStorage": [
+        {
+          "name": "app-theme",
+          "value": "light"
+        }
+      ]
+    }
+  ]
+}

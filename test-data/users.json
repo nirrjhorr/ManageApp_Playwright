@@ -1,0 +1,135 @@
+{
+  "validUser": {
+    "email": "master.admin@qaenv.com",
+    "password": "Password#1"
+  },
+  "mixedCaseUser": {
+    "email": "MASTER.ADMIN@QAENV.COM",
+    "password": "Password#1"
+  },
+  "wrongPasswordUser": {
+    "email": "master.admin@qaenv.com",
+    "password": "WrongPass#999"
+  },
+  "wrongEmailAndPassword": {
+    "email": "wrong@example.com",
+    "password": "wrongpass"
+  },
+  "nonExistentUser": {
+    "email": "ghost@notexist.com",
+    "password": "AnyPassword1"
+  },
+  "invalidEmailFormats": [
+    "notanemail",
+    "user@",
+    "@example.com",
+    "user@.com",
+    "user @example.com"
+  ],
+  "whitespaceUser": {
+    "email": "  master.admin@qaenv.com  ",
+    "password": "Password#1"
+  },
+  "specialCharPasswordUser": {
+    "email": "master.admin@qaenv.com",
+    "password": "!@#$%^&*()_+-=[]{}"
+  },
+  "longEmail": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@example.com",
+  "longPassword": "P@ssword123aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "sqlInjectionPayloads": [
+    "' OR '1'='1",
+    "admin'--",
+    "\"; DROP TABLE users;--"
+  ],
+  "xssPayloads": [
+    "<script>alert('xss')</script>"
+  ],
+  "lockoutUser": {
+    "email": "lockout-test@qaenv.com",
+    "password": "WrongPassword#123"
+  },
+  "usersModule": {
+    "searchTerm": "test july",
+    "createUser": {
+      "firstName": "Autotest",
+      "lastName": "User",
+      "jobTitle": "Frontend Dev",
+      "role": "Administrator",
+      "department": "Sales",
+      "optional": {
+        "phone": "+44 7911 123456",
+        "jobTitle": "Application Officer",
+        "bio": "Loves testing",
+        "avatar": "avatar.png"
+      },
+      "customRole": "Author",
+      "teams": ["Sales EMEA", "Onboarding 2026"],
+      "unicodeName": {
+        "first": "José",
+        "last": "Müller",
+        "cjk": "田中",
+        "emoji": "😀"
+      },
+      "boundary": {
+        "longName": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "longEmail": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb@company.com"
+      },
+      "sqlPayload": "'; DROP TABLE users; --",
+      "xssPayload": "<script>alert(1)</script>",
+      "whitespace": {
+        "spacesOnly": "   ",
+        "padded": "  John  "
+      }
+    },
+    "inviteUser": {
+      "singleEmail": "jane.smith@company.com",
+      "role": "Learner",
+      "managerRole": "Manager",
+      "batchEmails": [
+        "batch1@company.com",
+        "batch2@company.com",
+        "batch3@company.com"
+      ],
+      "preAssignedTeams": ["Marketing", "EU Region"],
+      "malformedEmail": "notanemail"
+    },
+    "viewUser": {
+      "targetName": "John Doe",
+      "role": "Author",
+      "teams": ["Sales EMEA", "Onboarding 2026"],
+      "department": "Finance",
+      "statuses": ["Active", "Inactive", "Invited"]
+    },
+    "editUser": {
+      "newLastName": "Smith",
+      "newPhone": "+44 20 7946 0958",
+      "newJobTitle": "Content Lead",
+      "fromDepartment": "Sales",
+      "toDepartment": "Marketing",
+      "removeTeam": "Sales EMEA",
+      "addTeam": "Sales APAC"
+    },
+    "userDirectory": {
+      "exactSearch": "John Doe",
+      "partialSearch": "Jo",
+      "caseInsensitiveSearch": "JOHN doe",
+      "specialCharSearch": "O'Brien",
+      "nonExistentSearch": "zzzznotarealuser",
+      "filterRole": "Manager",
+      "filterStatus": "Active",
+      "filterTeam": "Sales",
+      "pageSizes": [10, 25, 50, 100]
+    },
+    "userStatus": {
+      "activeStatus": "Active",
+      "inactiveStatus": "Inactive",
+      "invitedStatus": "Invited"
+    },
+    "invalidEmails": [
+      "test@m,ail.com",
+      "notanemail",
+      "user@",
+      "@example.com"
+    ]
+  }
+}
