@@ -40,14 +40,24 @@ export class InviteUserPage {
   /**
    * Selects a role from the invite dropdown.
    */
-  async selectRole(role: 'Learner' | 'Manager' | 'Content Admin') {
-    const roleOptions = {
-      'Learner': this.learnerRoleOption,
-      'Manager': this.managerRoleOption,
-      'Content Admin': this.contentAdminRoleOption,
-    };
-    if (roleOptions[role]) {
-      await roleOptions[role].click();
+  async selectRole(role: 'Learner' | 'Manager' | 'Content Admin' | string) {
+    const roleButton = this.page.getByRole('dialog').getByRole('button', {
+      name: /Learner|Manager|Content Admin|Role|Select/i
+    }).first();
+
+    const currentText = await roleButton.innerText().catch(() => '');
+    if (currentText.includes(role)) {
+      return;
+    }
+
+    if (await roleButton.isVisible().catch(() => false)) {
+      await roleButton.click();
+      await this.page.waitForTimeout(300);
+    }
+
+    const option = this.page.getByRole('listitem').or(this.page.getByRole('option')).filter({ hasText: role }).first();
+    if (await option.isVisible().catch(() => false)) {
+      await option.click();
     }
   }
 

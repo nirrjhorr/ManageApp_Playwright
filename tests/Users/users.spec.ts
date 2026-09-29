@@ -242,10 +242,13 @@ test.describe('Users Module — Comprehensive Test Suite', () => {
     // Test back-navigation via step tabs
     await userSummaryPage.clickUserDetailsTab();
     await expect(createUserPage.emailInput).toBeVisible();
+    await userSummaryPage.page.waitForTimeout(400);
 
     // Navigate forward to Summary and submit
     await createUserPage.clickNext();
+    await userSummaryPage.page.waitForTimeout(400);
     await roleAssignPage.clickNext();
+    await expect(userSummaryPage.summaryTabpanel).toBeVisible();
     await userSummaryPage.clickAddUser();
 
     await usersPage.navigate();
@@ -567,7 +570,7 @@ test.describe('Users Module — Comprehensive Test Suite', () => {
 
     // Restore network
     await usersPage.page.context().setOffline(false);
-    await expect(userSummaryPage.summaryTabpanel.or(usersPage.usersNavLink.first())).toBeVisible();
+    await expect(userSummaryPage.summaryTabpanel.or(usersPage.usersNavLink).first()).toBeVisible();
   });
 
   // TC-User-020: Edge Case - Session boundary validation

@@ -90,8 +90,32 @@ Have been consolidated into:
 
 ---
 
-## 4. Verification
+## 4. TC-User-006 "Next" Button & Stepper Animation Resolution
+
+1. **Issue Diagnosed**:
+   - In `TC-User-006`, after inspecting the User Summary step and navigating back to the `User Details` step via `clickUserDetailsTab()`, calling `createUserPage.clickNext()` stalled and timed out with:
+     ```
+     TimeoutError: locator.click: Timeout 30000ms exceeded.
+     waiting for getByRole('button', { name: 'Next' })
+     element is not stable
+     retrying click action -> element is not visible
+     ```
+   - Because `this.nextButton` was defined as `page.getByRole('button', { name: 'Next' })` without tabpanel scoping, Playwright targeted an unscoped button while the Angular stepper tab was in motion (`element is not stable`), subsequently losing resolution when multiple step panels existed in the DOM.
+
+2. **Resolution Applied**:
+   - **`pages/create-user.page.ts`**:
+     - Scoped `nextButton` directly to `page.getByRole('dialog').getByRole('tabpanel', { name: 'User Details' }).getByRole('button', { name: 'Next' })`.
+     - In `clickNext()`, added a 400ms tab stabilization pause, prioritized the tabpanel-scoped button, ensured scroll-into-view, and used `{ force: true }` to bypass CSS animation locking.
+   - **`pages/role-assign.page.ts`**:
+     - Applied matching tabpanel scoping for `tabpanel "Assign Roles"` and `{ force: true }` in `clickNext()`.
+   - **`tests/Users/users.spec.ts` (`TC-User-006`)**:
+     - Added animation settling pauses and step readiness assertions (`expect(userSummaryPage.summaryTabpanel).toBeVisible()`) between back-navigating and advancing forward.
+
+---
+
+## 5. Verification
 
 - `npm run typecheck` (`tsc --noEmit`): **Exited with code 0** (clean, zero compiler errors).
 - Test count verification: Exactly **134** tests matching pattern `test\('TC-User-\d+`.
 - Execution status: **NOT RUN — USER CONTROLLED** in accordance with `/playwright-test-implementation` guidelines.
+

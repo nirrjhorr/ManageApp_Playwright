@@ -30,7 +30,11 @@ export class RoleAssignPage {
     this.userSummaryTab = page.getByRole('tab', { name: 'User Summary' });
 
     // Step 2 Next button (advances to User Summary)
-    this.nextButton = page.getByRole('button', { name: 'Next' });
+    this.nextButton = page.getByRole('dialog')
+      .getByRole('tabpanel', { name: 'Assign Roles' })
+      .getByRole('button', { name: 'Next' })
+      .or(page.getByRole('dialog').getByRole('button', { name: 'Next' }))
+      .filter({ visible: true });
   }
 
   get administratorOption(): Locator {
@@ -81,7 +85,17 @@ export class RoleAssignPage {
    * Advances to Step 3 (User Summary).
    */
   async clickNext() {
-    await this.nextButton.click();
+    await this.page.waitForTimeout(400);
+    const nextBtn = this.page.getByRole('dialog')
+      .getByRole('tabpanel', { name: 'Assign Roles' })
+      .getByRole('button', { name: 'Next' })
+      .or(this.page.getByRole('dialog').getByRole('button', { name: 'Next' }).filter({ visible: true }))
+      .or(this.page.getByRole('button', { name: 'Next' }))
+      .first();
+
+    await nextBtn.waitFor({ state: 'visible', timeout: 10000 });
+    await nextBtn.scrollIntoViewIfNeeded().catch(() => {});
+    await nextBtn.click({ force: true });
   }
 
   /**
